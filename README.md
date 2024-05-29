@@ -7,7 +7,7 @@ Important Features include:
 * Update the login credentials
 * generate passwords
 * check strength of the passwords
-* add the passwords to the vault
+* add/update/delete the passwords 
 * set the vault password
 * view the added passwords
 * contact/report an issue/subscribe
