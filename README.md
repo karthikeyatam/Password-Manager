@@ -1,5 +1,5 @@
 # Password-Manager
-This project is built to learn and implement CRUD functionalities of an application
+This project is built to learn and implement CRUD functionalities of an application\n
 Important Features include:
 * Login/Logout
 * Session Based 
