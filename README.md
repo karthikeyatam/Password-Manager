@@ -1,8 +1,9 @@
 # Password-Manager
-This project built to implement and learn CRUD functalaties of an application
-Here User Can
+This project is built to learn and implement CRUD functionalities of an application
+Important Features include:
 * Login/Logout
-* Update his credentials
+* Session Based 
+* Update the login credentials
 * generate passwords
 * check strength of the passwords
 * add the passwords to the vault
