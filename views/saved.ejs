@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Passwords</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      .passwords-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+      .password-container {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 10px 0;
+        width: calc(33.333% - 20px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .password-container p {
+        margin: 5px 0;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+        font-size: 14px;
+        color: #495057;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .password-container button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .password-container button:hover {
+        background-color: #0056b3;
+      }
+      .buttons{
+        display: inline-flex;
+        
+      }
+      @media (max-width: 768px) {
+        .password-container {
+          width: calc(50% - 20px);
+        }
+      }
+      @media (max-width: 480px) {
+        .password-container {
+          width: 100%;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>These are your saved passwords</h1>
+    <form action="/login/update" method="GET">
+      <div class="buttons">
+        <button class="btn btn-lg btn-primary">Update</button>
+      </div>
+    </form>
+    <br>
+    <form action="/login/delete" method="GET">
+      <div class="buttons">
+        <button class="btn btn-lg btn-primary">Delete</button>
+      </div>
+    </form>
+    <div class="passwords-container">
+      <%  for(var i=0;i<savedPasswords.length;i++){ %>
+        <div class="password-container">
+          <p><b>Website</b>:  <%= savedPasswords[i].website %></p>
+          <p><b>Password</b>:  <%= savedPasswords[i].saved_password %></p>
+        </div>
+      <% }; %>
+    </div>
+    
+</body>
+</html>

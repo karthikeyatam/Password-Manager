@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .user-profile {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .feature-card {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-content {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .feature-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .feature-button:hover {
+            background-color: #0056b3;
+        }
+        .help-settings {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .help-button,
+        .settings-button {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .help-button:hover,
+        .settings-button:hover {
+            background-color: #ddd;
+        }
+        .feature-icon {
+          font-size: 24px;
+          margin-bottom: 10px;
+      }
+      #logout {
+        padding: 8px 16px;
+        background-color: #f44336;
+        color: white;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+      }
+      
+      #logout:hover {
+        background-color: #d32f2f;
+      }
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-title">SecurePass</div>
+            <div class="user-profile">
+                <p>Welcome<% username %></p>
+            </div>
+           <form action="/logout" method="POST">
+            <nav class="navbar">
+                <!-- other nav items -->
+                <button type="submit" id="logout">Logout</button>
+              </nav> 
+           </form>             
+        </div>
+
+        <div class="feature-grid">
+            <!-- Generate New Password Card -->
+            <div class="feature-card">
+               <div class="feature-icon">🔑</div>
+                <div class="card-title">Generate New Password</div>
+                <div class="card-content">Click the button below to generate a new password:</div>
+                <form action="/login/generate" method="GET">
+                    <button class="feature-button" >Generate Password</button>
+                </form>
+                
+            </div>
+
+            <!-- Check Password Strength Card -->
+            <div class="feature-card">
+              <div class="feature-icon">🛡️</div>
+                <div class="card-title">Check Password Strength</div>
+                <div class="card-content">Evaluate the strength of your password:</div>
+                <form action="/login/strength" method="GET">
+                    <button class="feature-button">Check Strength</button>
+                </form>
+            </div>
+
+            <!-- View Saved Passwords Card -->
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+                <div class="card-title">View Saved Passwords</div>
+                <div class="card-content">See your list of saved passwords:</div>
+                <form action="/login/view" method="GET">
+                    <button class="feature-button" >View Passwords</button>
+                </form>
+            </div>
+
+            <!-- Add New Password Card -->
+            <div class="feature-card">
+                <div class="feature-icon">➕</div>
+                <div class="card-title">Add New Password</div>
+                <div class="card-content">Add a new password to your collection:</div>
+                <form action="/login/addpass" method="GET">
+                    <button class="feature-button">Add Password</button>
+                </form>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👁️</div>
+                <div class="card-title">Set Master Password</div>
+                <div class="card-content">Gateway for yout password Vault:</div>
+                <form action="/login/set" method="GET">
+                    <button class="feature-button">Set Password</button>
+                </form>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🗃️</div>
+                <div class="card-title">Recovery Options</div>
+                <div class="card-content">Recover & Backup:</div>
+                <button class="feature-button" onclick="addPassword()">Backup</button>
+            </div>
+        </div>
+
+        <!-- Help and Settings -->
+        <div class="help-settings">
+            <button class="help-button" onclick

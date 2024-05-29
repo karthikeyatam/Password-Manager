@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Strength Checker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e9ecef;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #password {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  #password:focus {
+    border-bottom-color: #007bff;
+    outline: none;
+  }
+  #strengthChart {
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Password Strength Checker</h2>
+  <input type="text" id="password" placeholder="Enter your password">
+  <canvas id="strengthChart" width="400" height="400"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+
+  //using chart js
+  var ctx = document.getElementById('strengthChart').getContext('2d');
+  var strengthChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Weak', 'Medium', 'Strong'],
+      datasets: [{
+        label: 'Password Strength',
+        data: [0, 0, 0],
+        backgroundColor: [
+          '#dc3545',
+          '#ffc107',
+          '#28a745'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        text: 'Password Strength'
+      },
+      animation: {
+        animateScale: true,
+        animateRotate: true
+      }
+    }
+  });
+
+  document.getElementById('password').addEventListener('input', function() {
+    var password = this.value;
+    var strength = {
+      weak: 0,
+      medium: 0,
+      strong: 0
+    };
+
+    // Updated strength calculation logic
+    if (password.length > 0) strength.weak = 1;
+    if (password.length >= 8) strength.medium = 1;
+    if (password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/) && password.match(/[\W]/)) {
+      strength.strong = 1;
+    }
+
+    strengthChart.data.datasets[0].data = [strength.weak, strength.medium, strength.strong];
+    strengthChart.update();
+  });
+</script>
+</body>
+</html>

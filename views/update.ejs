@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set Your Password</title>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.password-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1877F2; /* Facebook blue */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .input-group button:hover {
+    background-color: #0D6AEF; /* Darker shade on hover */
+  }
+</style>
+</head>
+<body>
+  <div class="password-container">
+    <h2>Update Password</h2>
+    <form id="passwordForm" action="/login/update" method="POST">
+        <div class="input-group">
+            <label for="password">Master Password</label>
+            <input type="password" id="password" name="master_password" placeholder="Enter Vault password" required>
+          </div>
+          <div class="input-group">
+            <label for="text">Website</label>
+            <input type="text" id="password" name="web" placeholder="website" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="update_password" placeholder="Enter your password" required>
+          </div>
+      <div class="input-group">
+            <button type="submit">Update Password</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
